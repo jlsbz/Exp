@@ -25,3 +25,12 @@ Since our API is the same as tensorflow, you can use tensorflow to pass all the 
 ```bash
 python3 run_test.py tensorflow
 ```
+
+
+
+
+Li Jiasen's readme:
+python inp.py
+run FMNIST or MNIST
+MNIST 99.5
+FMNIST 90
