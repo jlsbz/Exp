@@ -31,7 +31,9 @@ python3 run_test.py tensorflow
 
 Li Jiasen's readme:
 
+```bash
 python inp.py
+```
 
 run FMNIST or MNIST
 
