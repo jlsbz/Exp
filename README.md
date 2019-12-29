@@ -16,6 +16,7 @@ This is ResNet-6
 
 
 Our task
+
 train mnist2/3/deeper (Li Jiasen)
 acc > 99.2
 
