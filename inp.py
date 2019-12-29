@@ -18,7 +18,7 @@ def max_pool_2x2(x):
             padding='SAME')
 
 
-save_file = './model_mnist.ckpt'
+save_file = './model_mnist3.ckpt'
 
 # input
 x = tf.placeholder(tf.float32, shape=[None, 784])
@@ -123,11 +123,12 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST/", one_hot=True)
 saver = tf.train.Saver()
+keep_prob_val = 0.9
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for i in range(4000):
-        if i % 50 == 0:
+        if i % 50 == -1:
             batch_ = mnist.test.next_batch(5000)
             train_accuracy, loss__ = sess.run([accuracy,cross_entropy],feed_dict = { x: batch_[0],
                                            y_: batch_[1], keep_prob: 1.0})
@@ -139,8 +140,9 @@ with tf.Session() as sess:
                                            y_: batch[1], keep_prob: 1.0})
             print('step %d, trainning accuracy %g \t %g' % (i, train_accuracy,loss__))
 
-        train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.75})
-
+        train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: keep_prob_val})
+        if (i%100 == 49):
+            keep_prob_val = (keep_prob_val+.5)/2
     batch = mnist.test.next_batch(5000)
     ans = accuracy.eval(feed_dict={ x:batch[0],
                                     y_: batch[1], keep_prob: 1.0})
